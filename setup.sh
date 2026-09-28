@@ -2,14 +2,14 @@
 set -euo pipefail
 
 # ─── Defaults ────────────────────────────────────────────────────────────────
-MODEL="Abiray/MiniCPM5-2B-heretic-abliterated-GGUF:Q4_K_M"
+MODEL="openbmb/MiniCPM5-2B-GGUF:Q4_K_M"
 SERVICE_NAME="llama-server"
 HOST="127.0.0.1"
 PORT=42424
 BACKEND_PORT=42425
 THREADS=$(( $(nproc) - 2 ))
 PARALLEL=2
-CTX_SIZE=8192
+CTX_SIZE=131072
 IDLE_TIMEOUT=1800  # seconds
 TEMP=1.0
 TOP_P=0.95
@@ -127,7 +127,7 @@ ExecStart=$(command -v llama-server) \\
     --ctx-size ${CTX_SIZE} \\
     --parallel ${PARALLEL} \\
     --no-webui \\
-    --flash-attn \\
+    --flash-attn on \\
     --temp ${TEMP} \\
     --top-p ${TOP_P} \\
     --min-p ${MIN_P}
