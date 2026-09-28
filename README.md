@@ -153,8 +153,8 @@ activity patterns.
 ## Uninstall
 
 ```bash
-systemctl --user disable --now <service>.socket <service>-idle-check.timer
-rm ~/.config/systemd/user/<service>{,.socket,-proxy.service,-idle-check.{service,timer}}
-rm ~/.local/bin/<service>-{proxy-wait,idle-check}.sh
-systemctl --user daemon-reload
+./uninstall.sh                      # default service name
+./uninstall.sh --service gpt-oss    # specific instance
 ```
+
+Stops and disables the units, removes all generated files, and runs `daemon-reload`.
